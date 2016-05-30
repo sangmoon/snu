@@ -31,21 +31,39 @@ def lcs_length(str1, str2):
     return c, b
 
 
-def print_lcs(b, strr, i, j):
+def print_lcs(b, strr, i, j, flag):
     """For print LCS."""
+    # flag : row : 1 coloum : 2
     s = ''
-    if i == 0 or j == 0:
-        return ''
-    if b[i][j] == 3:
-        s += print_lcs(b, strr, i - 1, j - 1)
-        s += strr[i - 1]
-        return s
-    elif b[i][j] == 2:
-        s += print_lcs(b, strr, i - 1, j)
-        return s
+    if flag == 1:
+        if i == 0 or j == 0:
+            return ''
+        if b[i][j] == 3:
+            s += print_lcs(b, strr, i - 1, j - 1, flag)
+            s += strr[i - 1]
+            return s
+        elif b[i][j] == 2:
+            s += print_lcs(b, strr, i - 1, j, flag)
+            s += '_'
+            return s
+        else:
+            s += print_lcs(b, strr, i, j - 1, flag)
+            return s
     else:
-        s += print_lcs(b, strr, i, j - 1)
-        return s
+        if i == 0 or j == 0:
+            return ''
+        if b[i][j] == 3:
+            s += print_lcs(b, strr, i - 1, j - 1, flag)
+            s += strr[j - 1]
+            return s
+        elif b[i][j] == 2:
+            s += print_lcs(b, strr, i - 1, j, flag)
+            return s
+        else:
+            s += print_lcs(b, strr, i, j - 1, flag)
+            s += '_'
+            return s
+
 
 # 실제 gene에 적용하기 위해 input 처리하는 함수와
 # 반복 실행하는 함수 만듬
@@ -57,12 +75,32 @@ file_B = open("geneB.fasta", 'r')
 name_A = file_A.readline()
 name_B = file_B.readline()
 
-gene_A = file_A.readlines()
-gene_B = file_B.readlines()
+lines_A = file_A.readlines()
+lines_B = file_B.readlines()
 
-# str_A = file_A.read()
-# str_B = file_B.read()
+gene_A = ""
+gene_B = ""
 
+for line in lines_A:
+    gene_A += line.strip()
+
+for line in lines_B:
+    gene_B += line.strip()
+
+slice_A0 = gene_A[0:100]
+slice_B0 = gene_B[0:100]
+
+x, y = lcs_length(slice_A0, slice_B0)
+
+lcs_A = print_lcs(y, slice_A0, 100, 100, 1)
+lcs_B = print_lcs(y, slice_B0, 100, 100, 0)
+
+lcs_A = '_' * (len(slice_A0) - len(lcs_A)) + lcs_A
+lcs_B = '_' * (len(slice_B0) - len(lcs_B)) + lcs_B
+print(slice_A0)
+print(lcs_A)
+print(slice_B0)
+print(lcs_B)
 # for line in geneA:
 #    print(line)
 # print(gene_A)
@@ -70,7 +108,7 @@ gene_B = file_B.readlines()
 file_A.close()
 file_B.close()
 
-"""
+'''
 X = "ABCBDAB"
 Y = "BDCABA"
 x, y = lcs_length(X, Y)
@@ -79,5 +117,7 @@ for line in x:
 print('')
 for line in y:
     print(line)
-print(print_lcs(y, X, 7, 6))
-"""
+
+print(print_lcs(y, X, 7, 6, 1))
+print(print_lcs(y, Y, 7, 6, 0))
+'''
