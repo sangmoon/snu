@@ -1,5 +1,8 @@
 """lcs doc string."""
 # 2010-12343 박상문
+from math import floor
+
+
 '''
  in b, we have 3 choice.
  1 ->  left
@@ -69,6 +72,19 @@ def print_lcs(b, strr, i, j, flag):
 # 반복 실행하는 함수 만듬
 
 
+def find_lcs_of_two(slice_a, slice_b):
+    """Compare lcs of two input."""
+    x, y = lcs_length(slice_a, slice_b)
+    length = x[len(slice_a)][len(slice_b)]
+
+    lcs_a = print_lcs(y, slice_a, len(slice_a), len(slice_b), 1)
+    lcs_b = print_lcs(y, slice_b, len(slice_a), len(slice_b), 0)
+
+    lcs_a = '_' * (len(slice_a) - len(lcs_a)) + lcs_a
+    lcs_b = '_' * (len(slice_b) - len(lcs_b)) + lcs_b
+    return lcs_a, lcs_b, length
+
+# main start
 file_A = open("geneA.fasta", 'r')
 file_B = open("geneB.fasta", 'r')
 
@@ -86,24 +102,46 @@ for line in lines_A:
 
 for line in lines_B:
     gene_B += line.strip()
+# 전처리 끝
 
-slice_A0 = gene_A[0:100]
-slice_B0 = gene_B[0:100]
+for i in range(floor(len(gene_A) / 50)):
+    interval_A = 0
+    if len(gene_A) - 50 * i <= 50:
+        break
+    elif 51 <= len(gene_A) - 50 * i <= 100:
+        interval_A = len(gene_A) - 50 * i
+    else:
+        interval_A = 100
 
-x, y = lcs_length(slice_A0, slice_B0)
+    max_A = ''
+    max_B = ''
+    idx_A = 0
+    idx_B = 0
+    max_length = 0
+    slice_A = gene_A[50 * i: 50 * i + interval_A]
 
-lcs_A = print_lcs(y, slice_A0, 100, 100, 1)
-lcs_B = print_lcs(y, slice_B0, 100, 100, 0)
+    for j in range(floor(len(gene_B) / 50)):
+        interval_B = 0
+        if len(gene_B) - 50 * j <= 50:
+            break
+        elif 51 <= len(gene_B) - 50 * j <= 100:
+            interval_B = len(gene_B) - 50 * j
+        else:
+            interval_B = 100
 
-lcs_A = '_' * (len(slice_A0) - len(lcs_A)) + lcs_A
-lcs_B = '_' * (len(slice_B0) - len(lcs_B)) + lcs_B
-print(slice_A0)
-print(lcs_A)
-print(slice_B0)
-print(lcs_B)
-# for line in geneA:
-#    print(line)
-# print(gene_A)
+        slice_B = gene_B[50 * j: 50 * j + interval_B]
+        lcs_a, lcs_b, length = find_lcs_of_two(slice_A, slice_B)
+        if (length > max_length):
+            max_A = lcs_a
+            max_B = lcs_b
+            idx_A = i
+            idx_B = j
+            max_length = length
+
+    print('A' + str(idx_A * 50) + ',B' + str(idx_B * 50))
+    print(max_A)
+    print(max_B)
+
 
 file_A.close()
 file_B.close()
