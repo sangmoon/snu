@@ -3,16 +3,33 @@
 from math import floor
 
 '''
- in b, we have 3 choice.
- 1 ->  left
- 2 ->  up
- 3 ->  digonal
+We justify 4 functions.
+
+- lcs_length(str1, str2)
+    return DP arrays.
+    in b, we have 3 choice.
+    1 ->  left
+    2 ->  up
+    3 ->  digonal
+
+- print_lcs(b, strr, i, j, flag)
+    실제 lcs를 recursive하게 추적해서 리턴한다.
+    실제 strr과 비교하여 겹치지 않는 부분은 '_' 을 넣는다.
+    하지만 맨앞에 잘리는 부분을 해결하지 못한다.
+
+- find_lcs_of_two(slice_a, slice_b)
+    2개의 string input에 대해서
+    lcs를 구하고, print_lcs에서 해결하지 못한 앞부분 '_'
+    처리를 한뒤에 lcs_a, lcs_b, length 3개를 리턴한다.
+
+- find_all_lcs(gene_a, gene_b, name1, name2)
+
 '''
 # LCS 위한 2개의 함수 정의
 
 
 def lcs_length(str1, str2):
-    """Retrun LCS's length."""
+    """Retrun 2 LCS arrays."""
     len1 = len(str1)  # m
     len2 = len(str2)  # n
 
@@ -73,14 +90,16 @@ def print_lcs(b, strr, i, j, flag):
 
 def find_lcs_of_two(slice_a, slice_b):
     """Compare lcs of two input."""
+    len_a = len(slice_a)
+    len_b = len(slice_b)
     x, y = lcs_length(slice_a, slice_b)
-    length = x[len(slice_a)][len(slice_b)]
+    length = x[len_a][len_b]
 
-    lcs_a = print_lcs(y, slice_a, len(slice_a), len(slice_b), 1)
-    lcs_b = print_lcs(y, slice_b, len(slice_a), len(slice_b), 0)
+    lcs_a = print_lcs(y, slice_a, len_a, len_b, 1)
+    lcs_b = print_lcs(y, slice_b, len_a, len_b, 0)
 
-    lcs_a = '_' * (len(slice_a) - len(lcs_a)) + lcs_a
-    lcs_b = '_' * (len(slice_b) - len(lcs_b)) + lcs_b
+    lcs_a = '_' * (len_a - len(lcs_a)) + lcs_a
+    lcs_b = '_' * (len_b - len(lcs_b)) + lcs_b
     return lcs_a, lcs_b, length
 
 
@@ -151,17 +170,3 @@ find_all_lcs(gene_B, gene_A, 'B', 'A')
 
 file_A.close()
 file_B.close()
-
-'''
-X = "ABCBDAB"
-Y = "BDCABA"
-x, y = lcs_length(X, Y)
-for line in x:
-    print(line)
-print('')
-for line in y:
-    print(line)
-
-print(print_lcs(y, X, 7, 6, 1))
-print(print_lcs(y, Y, 7, 6, 0))
-'''
