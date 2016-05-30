@@ -51,18 +51,28 @@ def print_lcs(b, strr, i, j):
 # 반복 실행하는 함수 만듬
 
 
-# geneA = open("geneA.fasta")
-# geneB = open("geneB.fasta")
+file_A = open("geneA.fasta", 'r')
+file_B = open("geneB.fasta", 'r')
+
+name_A = file_A.readline()
+name_B = file_B.readline()
+
+gene_A = file_A.readlines()
+gene_B = file_B.readlines()
+
+# str_A = file_A.read()
+# str_B = file_B.read()
 
 # for line in geneA:
 #    print(line)
+# print(gene_A)
 
-# geneA.close()
-# geneB.close()
+file_A.close()
+file_B.close()
 
+"""
 X = "ABCBDAB"
 Y = "BDCABA"
-
 x, y = lcs_length(X, Y)
 for line in x:
     print(line)
@@ -70,3 +80,4 @@ print('')
 for line in y:
     print(line)
 print(print_lcs(y, X, 7, 6))
+"""
