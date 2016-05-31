@@ -13,7 +13,7 @@ Machine: PC
 Program language and version: python 3.5.1
 External library: No
 
-defualt python version이 3.5.1인 경우
+default python version이 3.5.1인 경우
 ```python
 $ python 2010-12343-HW3-1.py geneA.fasta geneB.fasta
 ```
