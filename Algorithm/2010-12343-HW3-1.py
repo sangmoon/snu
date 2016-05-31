@@ -1,7 +1,7 @@
 """lcs doc string."""
 # 2010-12343 박상문
 from math import floor
-
+import sys
 '''
 We justify 4 functions.
 
@@ -23,7 +23,8 @@ We justify 4 functions.
     처리를 한뒤에 lcs_a, lcs_b, length 3개를 리턴한다.
 
 - find_all_lcs(gene_a, gene_b, name1, name2)
-
+    gene_a를 기준으로 gene_b에 대해 lcs를 모두 구한다.
+    뒤에 넣어주는 name1 name2는 이름에 붙일 'A' 'B' 의 순서를 넣어준다.
 '''
 # LCS 위한 2개의 함수 정의
 
@@ -84,8 +85,8 @@ def print_lcs(b, strr, i, j, flag):
             return s
 
 
-# 실제 gene에 적용하기 위해 input 처리하는 함수와
-# 반복 실행하는 함수 만듬
+# 실제 gene에 적용하기 위해 lcs를 찾는 함수와
+# 반복 실행하는 함수를 만듬
 
 
 def find_lcs_of_two(slice_a, slice_b):
@@ -146,9 +147,12 @@ def find_all_lcs(gene_a, gene_b, name1, name2):
         print(max_b)
 
 # main start
-file_A = open("geneA.fasta", 'r')
-file_B = open("geneB.fasta", 'r')
 
+
+file_A = open(sys.argv[1], 'r')
+file_B = open(sys.argv[2], 'r')
+
+# line 첫줄은 메타데이터기 때문에 제거
 name_A = file_A.readline()
 name_B = file_B.readline()
 
@@ -164,9 +168,10 @@ for line in lines_A:
 for line in lines_B:
     gene_B += line.strip()
 # 전처리 끝
-
+# 진짜 작업 시작
 find_all_lcs(gene_A, gene_B, 'A', 'B')
 find_all_lcs(gene_B, gene_A, 'B', 'A')
 
 file_A.close()
 file_B.close()
+# 끝
