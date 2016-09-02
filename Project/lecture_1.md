@@ -2,7 +2,7 @@
 - 금요일 1시~5시
 - 엄현상
 - dcslab.snu.ac.kr/courses/2016f/project
----
+
 
 ## 일정
 10/28 중간발표 - 상세 스팩??
@@ -12,7 +12,8 @@
 11월 회사 방문 - 삼성? LG? 네이버? SK CNC?
 
 12/16 최종발표
----
+
+
 ## 회사 과제 설명  
 삼성전자 생산기술연구소  
 - ``Long time Process Data Visualization``  
