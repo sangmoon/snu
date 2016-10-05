@@ -132,3 +132,75 @@ fuse (노르웨이 회사! 크로스플랫폼 앱 개발 UX tool 제공)
   verilog(VHDL)  
   Altera 시스템 툴...  
 
+티맥스소프트  
+- ``Heuristic을 이용한 스도쿠 문제 출제 및 풀이기``  
+  출제프로그램: 임의의 정사각행렬로 확장.  
+  해결프로그램: 빠른 시간내에...  
+  가능할 경우 분산 처리 방식으로 구현..  
+  캐시까지 고려하라고..?  
+  언어는 무관  
+
+- ``openCV 이용한 gender classification``  
+  주어진 얼굴 이미지 DB를 통해 성별을 구분할 attribute 식별  
+  머신러닝 알고리즘  
+  KNN, SVM, Naive Bayes  등등등.... 
+  하둡을 사용해서 최대한 많은 DB 제공...
+  오픈소스를 써도 좋지만 가능한 한 직접 구현해봐라...  
+  인종 관계 없이..?  그건 
+
+- ``Event Loop 를 이용한 Web Engine 개발``  
+  event loop를 이용해 간단한http요청을 처리할 수 있는 웹 엔진 개발  
+  event 구조를 설계하고 vent loop와 worker thread간에 통신 기능 개발  
+  java, servlet, db  
+
+- ``simple syntax language interpreter 작성``
+  c-like 언어에 대한 인터프리터 작성  
+  알고리즘, 컴파일러 지식....  
+
+네오위즈  
+- `어프리케이션 통합 런쳐 개발`  
+  배틀넷같은 통합 런처!  
+  실질적인 코드 제공 불가  
+  데모 아이템에 대한 관리를 일단 구현  
+
+- `DNS 쿼리 패턴 분석을 통한 APT 공격탐지`  
+  악성 리퀘스트 찾는거 하나, 감염된 호스트 특정하는 툴 하나  
+  DNS Log 분석...  
+
+SK 플레닛  
+- `OCR by Deep Learning`  
+  Optical Character Recognition(사진읽고 텍스트파일로 만든다.)  
+  DB도 직접 만들어야 한다???  합성DB?  
+  BLU 로 평가한다.  
+
+아마존  (channyun@amazon.com)
+- `Amazon Echo를 위한 Alexa 음성 인식 서비스 앱 개발(신규)`  
+  AWS Lambda 및 dynmoDB등의 AWS 서비스를 통해 음성인식 앱 개발  
+  음성 인식 앱 아이디어는 자유 주제이나, 주제가 없는 경우, Kpop Enabler 만들기  
+  REST API나 JSON 호출 지식...  
+
+- `Amazon DSSTNE 최적화된 딥러닝 클라우드 이미지 만들기(신규)`  
+  AWS GPU 인스턴스 전용 이미지 및 샘플 프로젝트 제작  
+  원 클릭 론칭용 클라우드 formation Template 구현  
+  기존 벤치마킹 테스트와 대비한 성능 개선  
+  DSSTNE 길잡이 역할...  
+
+LG 전자  
+- `W3C 웹 표준 기술을 활용한 웹 앱 개발`  
+  이거 하면 나랑 맞긴 한데...  
+  필수기술 5개 선택기술 3개  
+  ```
+  필수기술 : 1.presentation API
+            2.media queries
+            3.service worker
+            4.push notification
+            5.web app manifest
+
+  선택기술 : 1.web components
+            2.fetch API
+            3.Background sync API
+            4.perfomance timeline
+            5.CSS flexible box layout
+            6.CSS fonts
+  ```
+  이런 기술을 잘 보여주는 웹앱을 만들어야 한다.
